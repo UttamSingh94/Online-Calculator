@@ -1,0 +1,385 @@
+/* General reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Layout: keep header at top, footer at bottom, calculator centered */
+body {
+  font-family: "Inter", sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* full viewport height */
+  background: var(--bg);
+  transition: background 0.3s ease;
+}
+
+/* Theme variables */
+:root {
+  --bg: #f4f4f4;
+  --text: #222;
+  --button-bg: #e3e3e3;
+  --button-hover: #d1d1d1;
+  --operator-bg: #6a11cb;
+  --operator-text: #fff;
+}
+
+body.dark {
+  --bg: #121212;
+  --text: #f9f9f9;
+  --button-bg: #333;
+  --button-hover: #444;
+  --operator-bg: #ff9500;
+  --operator-text: #fff;
+}
+
+.container {
+  width: 100%;
+  max-width: 400px;
+  padding: 15px;
+  /* center the calculator area between header and footer */
+  margin: 0 auto; 
+  flex: 1 0 auto; /* allow container to grow and take available space */
+  display: flex;
+  flex-direction: column; /* stack toggle above calculator */
+  align-items: center;    /* center horizontally */
+  justify-content: center;/* center vertically */
+  gap: 0; /* no gap: toggle will touch the calculator */
+}
+
+.theme-toggle {
+  display: flex;
+  justify-content: flex-end; /* align toggle to the right above calculator */
+  width: 100%;
+  margin-bottom: -6px; /* negative margin so the button touches the calculator */
+  padding-right: 6px; /* small inset from the container edge */
+}
+
+.theme-toggle button {
+  background: var(--button-bg);
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.theme-toggle button:hover {
+  background: var(--button-hover);
+}
+
+.calculator {
+  background: var(--button-bg);
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+#display {
+  width: 100%;
+  height: 60px;
+  font-size: 28px;
+  margin-bottom: 20px;
+  text-align: right;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  color: var(--text);
+  background: #fff;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+button {
+  height: 60px;
+  font-size: 20px;
+  font-weight: bold;
+  border: none;
+  border-radius: 12px;
+  background: var(--button-bg);
+  color: var(--text);
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  background: var(--button-hover);
+}
+
+button:active {
+  transform: scale(0.92);
+}
+
+button.equal {
+  grid-column: span 1;
+  background: var(--operator-bg);
+  color: var(--operator-text);
+}
+
+button.zero {
+  grid-column: span 2;
+}
+
+#display {
+  width: 100%;
+  height: 60px;
+  font-size: 28px;
+  margin-bottom: 20px;
+  text-align: right;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  color: var(--text);
+  background: var(--display-bg);
+}
+
+/* Light theme display */
+:root {
+  --bg: #f4f4f4;
+  --text: #222;
+  --button-bg: #e3e3e3;
+  --button-hover: #d1d1d1;
+  --operator-bg: #6a11cb;
+  --operator-text: #fff;
+  --display-bg: #ffffff;   /* ✅ White display for light mode */
+}
+
+/* Dark theme display */
+body.dark {
+  --bg: #121212;
+  --text: #f9f9f9;
+  --button-bg: #333;
+  --button-hover: #444;
+  --operator-bg: #ff9500;
+  --operator-text: #fff;
+  --display-bg: #1e1e1e;   /* ✅ Dark display for dark mode */
+}
+
+/* General reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: var(--bg);
+  transition: background 0.3s ease;
+}
+
+/* Theme variables */
+:root {
+  --bg: #f4f4f4;
+  --text: #222;
+  --button-bg: #e3e3e3;
+  --button-hover: #d1d1d1;
+  --operator-bg: #6a11cb;
+  --operator-text: #fff;
+  --display-bg: #ffffff;
+}
+
+body.dark {
+  --bg: #121212;
+  --text: #f9f9f9;
+  --button-bg: #333;
+  --button-hover: #444;
+  --operator-bg: #ff9500;
+  --operator-text: #fff;
+  --display-bg: #1e1e1e;
+}
+
+.container {
+  width: 100%;
+  max-width: 400px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+}
+.theme-toggle {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin-bottom: -6px;
+  padding-right: 6px;
+}
+
+.theme-toggle button {
+  background: var(--button-bg);
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.theme-toggle button:hover {
+  background: var(--button-hover);
+}
+
+.calculator {
+  background: var(--button-bg);
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+#display {
+  width: 100%;
+  height: 60px;
+  font-size: 28px;
+  margin-bottom: 20px;
+  text-align: right;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  color: var(--text);
+  background: var(--display-bg);
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+button {
+  height: 60px;
+  font-size: 20px;
+  font-weight: bold;
+  border: none;
+  border-radius: 12px;
+  background: var(--button-bg);
+  color: var(--text);
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  background: var(--button-hover);
+}
+
+button:active {
+  transform: scale(0.92);
+}
+
+button.equal {
+  grid-column: span 1;
+  background: var(--operator-bg);
+  color: var(--operator-text);
+}
+
+button.zero {
+  grid-column: span 2;
+}
+
+/* ✅ Responsive for smaller screens */
+@media (max-width: 500px) {
+  .container {
+    max-width: 100%;
+    padding: 10px;
+  }
+
+  #display {
+    height: 50px;
+    font-size: 22px;
+  }
+
+  .buttons {
+    gap: 8px;
+  }
+
+  button {
+    height: 50px;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 350px) {
+  #display {
+    font-size: 18px;
+    padding: 8px;
+  }
+
+  button {
+    height: 45px;
+    font-size: 16px;
+    border-radius: 8px;
+  }
+}
+/* Header styling */
+.header {
+  text-align: center;
+  /* make header sit at the very top */
+  padding: 20px 0 10px 0;
+  color: var(--text);
+  flex: 0 0 auto; /* do not grow */
+}
+
+.header h1 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.header p {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+/* Footer styling */
+.footer {
+  text-align: center;
+  /* pin footer to bottom */
+  padding: 12px 0;
+  font-size: 14px;
+  color: var(--text);
+  opacity: 0.7;
+  flex: 0 0 auto; /* keep footer at its content height */
+}
+
+/* 🔹 Highlight Utam Kumar link */
+.highlight-link {
+  font-weight: bold;
+  color: #ff6600; /* bright orange */
+  text-decoration: none;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.highlight-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, #ff6600, #ff0066);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+.highlight-link:hover {
+  color: #ff0066; /* changes color on hover */
+}
+
+.highlight-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
