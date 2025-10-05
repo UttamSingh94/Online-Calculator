@@ -19,11 +19,32 @@ function deleteLast() {
 // Calculate
 function calculate() {
   try {
-    display.value = eval(display.value);
+    let expr = display.value;
+
+    // Handle percentage based on operator
+    expr = expr.replace(/(\d+)([+\-*/])(\d+)%/g, (match, a, op, b) => {
+      a = parseFloat(a);
+      b = parseFloat(b);
+
+      if (op === '+' || op === '-') {
+        // Percentage of the first number (e.g., 8+5% = 8 + 8*5/100)
+        return `${a}${op}(${a}*${b}/100)`;
+      } else {
+        // For * or /, just use percentage as (b/100)
+        return `${a}${op}(${b}/100)`;
+      }
+    });
+
+    // Handle standalone percentages (e.g., "50%")
+    expr = expr.replace(/(\d+)%/g, "($1/100)");
+
+    display.value = eval(expr);
   } catch {
     display.value = "Error";
   }
 }
+
+
 
 // Theme toggle
 themeToggle.addEventListener("click", () => {
